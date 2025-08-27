@@ -17,8 +17,24 @@ class FacultadService:
     return facultad
     
   def actualizar_facultad(facultad: Facultad, id: int):
-    FacultadRepository.actualizar_facultad(facultad, id)
-    return facultad
+    facultad_existente = FacultadRepository.guardar_facultad(id)
+
+    if not facultad_existente:
+      return None
+    
+    facultad_existente = FacultadRepository.buscar_facultad(id)
+    facultad_existente.nombre = facultad.nombre
+    facultad_existente.abreviatura = facultad.abreviatura
+    facultad_existente.directorio = facultad.directorio
+    facultad_existente.sigla = facultad.sigla
+    facultad_existente.codigoPostal = facultad.codigoPostal
+    facultad_existente.ciudad = facultad.ciudad
+    facultad_existente.domicilio = facultad.domicilio
+    facultad_existente.telefono = facultad.telefono
+    facultad_existente.contacto = facultad.contacto
+    facultad_existente.email = facultad.email
+
+    return FacultadRepository.guardar_facultad(facultad_existente)
   
   def eliminar_facultad(id: int):
     facultad = FacultadRepository.eliminar_facultad(id)

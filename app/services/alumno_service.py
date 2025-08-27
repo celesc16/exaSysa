@@ -2,7 +2,6 @@ from flask import render_template
 from app.models import Alumno
 from app.repositories import AlumnoRepository
 from datetime import datetime
-import datetime
 from io import BytesIO
 from app.services.documentos_office_service import obtener_tipo_documento
 import base64
